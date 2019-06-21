@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" 
+            integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" 
+            crossorigin="anonymous">
+        <link rel="stylesheet" href="css/style.css">
+        <title>yMomentum</title>
+    </head>
+    <body>
+        <h3>
+            <span id="date"></span>
+        </h3>
+        <time id="time"></time>
+        <h1>
+            <span id="greeting"></span>
+            <span id="name" contenteditable="true"></span>
+        </h1>
+        <h2 id="qfocus">Worauf liegt Dein heutiger Focus?</h2>
+        <h2 id="focus" contenteditable="true"></h2>
+        
+        <div id="mySidepanel" class="sidepanel">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <form id="mainForm" action="#">
+                <div class="todolist">
+                </div>
+                <div id="inputTodo">
+                    <input id="newTodo" type="text" placeholder="Neues Todo erstellen" />
+                    <a href="javascript:void(0)" class="newTodoBtn" onclick="submitForm()"> <i class="fa fa-plus-square"></i></a>
+                </div>
+            </form>
+        </div>
+        <div id="todobtn">
+            <button class="openbtn" onclick="openNav()">&#9776; Todos</button>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>

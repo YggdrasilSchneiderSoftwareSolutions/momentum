@@ -1,0 +1,140 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+  color: whitesmoke;
+  background: no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#time {
+  font-size: 8rem;
+}
+
+h1 {
+  margin-bottom: 3rem;
+}
+
+h2 {
+  margin-bottom: 0.5rem;
+  opacity: 0.6;
+}
+
+@media (max-width: 700px) {
+  #time {
+    font-size: 6rem;
+  }
+}
+
+/* The sidepanel menu */
+.sidepanel {
+  height: 500px; /* Specify a height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  bottom: 0; /* unten ... */
+  right: 0; /* ...rechts */
+  background-color: #111; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
+}
+
+/* The sidepanel links */
+.sidepanel a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidepanel a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidepanel .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Style the button that is used to open the sidepanel */
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+#todobtn {
+  display: flex;
+  flex-direction: row;
+  align-content: flex-end;
+  justify-content: space-between;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+}
+
+.right {
+  margin-left: auto;
+}
+
+.sidepanel .todolist {
+  text-align: left;
+  margin-left: 4%;
+}
+
+#inputTodo {
+  text-align: left;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding-bottom: 3%;
+  display : flex;
+  align-items : center;
+}
+#inputTodo a {
+  padding: 0;
+  margin-left: 2%;
+  display: inline;
+}
+
+#inputTodo a i {
+  font-size: 35px;
+}
+
+#inputTodo input {
+  font-size: 14px;
+  padding: 8px 12px;
+}
+
+#newTodo {
+  margin-left: 3%;
+  width: 80%;
+}
