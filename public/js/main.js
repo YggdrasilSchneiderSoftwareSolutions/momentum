@@ -5,6 +5,7 @@ const name = $('#name');
 const date = $('#date');
 const qFocus = $('#qfocus');
 const mainForm = $('#mainForm');
+const todobtn = $('#todobtn');
 
 const DEFAULT_NAME = '[Gib Deinen Namen ein]';
 const DEFAULT_FOCUS = '[Gib Deinen Focus ein]';
@@ -182,6 +183,7 @@ function init(callback) {
     name.hide();
     qFocus.hide();
     focus.hide();
+    todobtn.hide();
 
     isNameSet = localStorage.getItem('name') !== null;
 
@@ -197,6 +199,7 @@ function startUp() {
     focus.fadeIn('400', showFocus());
     removeDoneTodos()
         .then(showTodos());
+    todobtn.fadeIn('400');
 }
 
 function getName() {
