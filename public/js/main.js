@@ -7,8 +7,8 @@ const qFocus = $('#qfocus');
 const mainForm = $('#mainForm');
 const todobtn = $('#todobtn');
 
-const DEFAULT_NAME = '[Gib Deinen Namen ein]';
-const DEFAULT_FOCUS = '[Gib Deinen Focus ein]';
+const DEFAULT_NAME = '[Gib hier Deinen Namen ein + Enter]';
+const DEFAULT_FOCUS = '[Gib hier Deinen Fokus ein + Enter]';
 const GREET_INITIAL = 'Hallo, wie heißt Du?';
 const GREET_MORNING = 'Guten Morgen, ';
 const GREET_AFTERNOON = 'Guten Tag, ';
@@ -141,23 +141,24 @@ function showTodos() {
             let todoid = '#todo'+ index;
             $(todolabelid).css('text-decoration', 'line-through');
             $(todoid).prop('checked', true);
-            $(todoid).prop('disabled', true);
         }
     });
 }
 
 /**
- * todo.done = true setzen und speichern. Danach Anzeige neu aufbauen
+ * todo.done = true oder false setzen und speichern. Danach Anzeige neu aufbauen
  * @param {Integer} index 
  */
 function markTodo(index) {
     let todoid = '#todo' + index;
+    let todolist = JSON.parse(localStorage.getItem('todos'));
     if ($(todoid).prop('checked')) {
-        let todolist = JSON.parse(localStorage.getItem('todos'));
-        todolist[index].done = true;
-        localStorage.setItem('todos', JSON.stringify(todolist));
-        showTodos();
+        todolist[index].done = true; // Todo wurde als erledigt markiert
+    } else {
+        todolist[index].done = false; // Todo wurde wieder als unerledigt markiert
     }
+    localStorage.setItem('todos', JSON.stringify(todolist));
+    showTodos();
 }
 
 /**
@@ -205,7 +206,6 @@ function startUp() {
 function getName() {
     greeting.fadeIn('400', showGreet());
     name.fadeIn('400', showName());
-    name.focus();
 }
 
 $(document).ready(function() {
@@ -217,7 +217,7 @@ $(document).ready(function() {
         }
     });
 
-    // Events, setting inputs
+    // Events
     name.keypress(function(e) {
         if (e.which == 13 || e.keyCode == 13) {
             setName(name.text());
@@ -245,6 +245,48 @@ $(document).ready(function() {
         localStorage.setItem('todos', JSON.stringify(userTodos));
         showTodos();
         $('#newTodo').val('');
+    });
+
+    /**
+     * Markiert den ganzen Namen-Text bei focus
+     */
+    name.on('focus', function() {
+        var cell = this;
+        // select all text in contenteditable
+        // see http://stackoverflow.com/a/6150060/145346
+        var range, selection;
+        if (document.body.createTextRange) {
+            range = document.body.createTextRange();
+            range.moveToElementText(cell);
+            range.select();
+        } else if (window.getSelection) {
+            selection = window.getSelection();
+            range = document.createRange();
+            range.selectNodeContents(cell);
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
+    });
+
+    /**
+     * Markiert den ganzen Fokus-Text bei focus
+     */
+    focus.on('focus', function() {
+        var cell = this;
+        // select all text in contenteditable
+        // see http://stackoverflow.com/a/6150060/145346
+        var range, selection;
+        if (document.body.createTextRange) {
+            range = document.body.createTextRange();
+            range.moveToElementText(cell);
+            range.select();
+        } else if (window.getSelection) {
+            selection = window.getSelection();
+            range = document.createRange();
+            range.selectNodeContents(cell);
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
     });
 });
 
