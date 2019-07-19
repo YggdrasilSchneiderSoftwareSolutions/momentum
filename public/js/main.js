@@ -68,14 +68,15 @@ function showGreet() {
     let greetText = '';
 
     // Morgen
-    if (daytime < 10 && daytime > 5) {
+    if (daytime < 10 && daytime >= 5) {
         $('body').css("background-image", "url('img/11morning.jpg')");
         $('#date, #time').css("color", "black");
         greetText = GREET_MORNING;
     }
     // Nachmittag/Tag
-    else if (daytime > 10 && daytime < 19) {
+    else if (daytime >= 10 && daytime < 19) {
         $('body').css("background-image", "url('img/21afternoon.jpg')");
+        $('#date, #time').css("color", "whitesmoke");
         greetText = GREET_AFTERNOON;
     }
     // Abend
