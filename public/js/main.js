@@ -47,7 +47,7 @@ function getTime() {
 function showDate() {
     let today = new Date();
     let day = today.getDate();
-    let month = today.getMonth() + 1; // JS-Monate beginnen bei 0
+    let month = today.getMonth(); // JS-Monate beginnen bei 0 -> fuer array passt das
     let year = today.getFullYear();
 
     let formattedDate = Wochentage[today.getDay()] + ", " + day + ". " + Monate[month] + " " + year;
@@ -229,8 +229,14 @@ $(document).ready(function() {
 
     focus.keypress(function(e) {
         if (e.which == 13 || e.keyCode == 13) {
-            localStorage.setItem('focus', focus.text());
+            let focusTxt = focus.text();
+            // Blank beruecksichtigen, da sonst kein Zugriff mehr auf contenteditable-Feld
+            if (focusTxt === '') {
+                focusTxt = DEFAULT_FOCUS;
+            }
+            localStorage.setItem('focus', focusTxt);
             focus.blur();
+            showFocus();
         }
     });
 
